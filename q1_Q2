@@ -1,0 +1,319 @@
+Q1 — Detailed Guessestimate (Full Marks Version)
+Problem:
+
+Estimate the Total Number of E-Scooter Rides Per Week in a city with population 5 million, using a structured Guesstimate Approach.
+
+✅ Step 1: Define the Objective
+
+We need to estimate:
+
+Total E-Scooter Rides per Week = (Number of Active Users) × (Rides per User per Week)
+or
+Total Rides per Week = Fleet Supply Capacity × Utilization
+
+We will estimate using Demand-side and Supply-side approaches and take the final average.
+
+✅ Step 2: Break Down the Problem ("Top–Down Demand Approach")
+2.1 Population Breakdown
+
+Total population = 5,000,000
+
+Usually, 60% are in the age group (18–50 yrs) → target users
+→ 5M × 0.60 = 3,000,000 potential adults
+
+2.2 Percentage who use micro-mobility apps
+
+Typical adoption rate: 10%–20%
+
+We take 15%
+
+→ 3,000,000 × 15% = 450,000 potential users
+
+2.3 Realistic Active Weekly Users
+
+Only some of them ride regularly:
+
+Industry standard: 35%–45%
+We take 40%
+
+→ 450,000 × 40% = 180,000 active weekly users
+
+2.4 Average rides per active user per week
+
+Based on Lime, Bird, Yulu, Bounce:
+
+Office commuters: 4–5 rides/week
+
+Students: 1–2 rides/week
+
+Mixed average: 3 rides/week
+
+→ Total rides/week = 180,000 × 3
+= 540,000 rides per week (Demand Approach)
+
+✅ Step 3: Supply-Side Estimation
+
+Here, we estimate based on available scooters and their utilization.
+
+3.1 Fleet Size
+
+Assume:
+
+The city launches with 10,000 scooters
+
+3.2 Rides per scooter per day
+
+Typical city data:
+
+Lime: 6–8 rides/day
+
+Yulu: 5–7 rides/day
+
+We take: 7 rides/day
+
+3.3 Rides per scooter per week
+
+= 7 rides/day × 7 = 49 rides per week
+
+3.4 Total fleet rides per week
+
+= 10,000 scooters × 49
+= 490,000 rides per week (Supply Approach)
+
+✅ Step 4: Validate & Cross-Check
+
+Demand says → 540,000 rides/week
+Supply says → 490,000 rides/week
+
+Both are close → indicates good estimation.
+
+⭐ Final Estimate (Average):
+
+= (540,000 + 490,000) ÷ 2
+= 515,000 rides per week
+
+⭐ 📌 Final Answer for Exam:
+
+The E-Scooter Rental service can expect approximately 5.0 to 5.2 lakh rides per week in a metropolitan city of 5 million population.
+
+⭐ Q2 — EXTREMELY DETAILED (Full 16 Marks Answer)
+
+Your company is facing slow data ingestion, causing delays in customer onboarding. You need to explain the 5 key components of a Bottleneck Analysis & Resolution Framework.
+
+PART 1️⃣ — Identifying a Bottleneck & Quantifying Impact
+(A) What is a bottleneck?
+
+A bottleneck is the slowest step in a pipeline which limits the performance of the entire system.
+
+In data ingestion, it means:
+
+Data is arriving slower than expected
+
+Downstream systems (ETL, training, dashboards) are delayed
+
+Customer onboarding becomes slow
+
+(B) Step 1 — Detecting the Bottleneck
+
+Use Monitoring Tools:
+
+Kafka/Flink lag metrics
+
+API latency
+
+Task execution time
+
+Storage write speed
+
+System resource usage (CPU, network, RAM)
+
+Identify WHERE the slowdown happens:
+
+API call speed?
+
+File upload?
+
+Database writes?
+
+Transformation logic?
+
+Compression/uncompression?
+
+(C) Step 2 — Quantifying Impact
+Use KPIs to measure:
+
+Throughput → records/second
+
+Latency → time taken to ingest dataset
+
+End-to-end pipeline delay
+
+Data loss / retry count
+
+Onboarding time increase (direct business impact)
+
+Example:
+
+Earlier → 10 min onboarding
+
+Now → 25 min onboarding
+→ 150% increase
+→ directly leads to customer dissatisfaction
+
+Difference Between Slow Data Ingestion vs Model Training Bottleneck
+Factor	Slow Data Ingestion	Model Training Bottleneck
+Pipeline stage	ETL/Data ingestion layer	ML training pipeline
+Symptoms	High lag, slow data availability	Long epoch time, GPU overuse
+KPIs	latency, throughput, lag	training time, accuracy, GPU load
+Business impact	stale data → poor decisions	slow model updates
+PART 2️⃣ — Root Cause Analysis (RCA)
+
+Purpose:
+
+RCA helps identify the actual underlying cause instead of fixing surface symptoms.
+
+Common RCA Tools:
+
+5 Whys Analysis
+
+Ishikawa (Fishbone) Diagram
+
+Pareto Chart (80/20 rule)
+
+Log analysis
+
+Infrastructure Monitoring
+
+Example RCA using Ishikawa Diagram
+
+Categories:
+
+Hardware: low bandwidth, old servers
+
+Software: inefficient code, slow transforms
+
+Process: sequential processing
+
+Data: too large files, uncompressed files
+
+People: poor configuration
+
+Environment: network congestion
+
+PART 3️⃣ — Solutions After Identifying Root Cause
+
+After RCA, apply appropriate solutions.
+
+Solution Type 1: Scaling Improvements
+
+Auto-scaling ingestion servers
+
+Horizontal scaling (more instances)
+
+Vertical scaling (bigger CPU/RAM)
+
+Using cloud-managed services like AWS Kinesis, GCP Pub/Sub
+
+Solution Type 2: Pipeline Optimization
+
+Change architecture: Batch → Micro-batch
+
+Use streaming frameworks (Kafka, Flink, Spark Streaming)
+
+Parallel processing instead of sequential
+
+Compress data before sending
+
+Use faster file formats: Parquet, ORC
+
+Solution Type 3: Database Improvements
+
+Indexing
+
+Bulk writes instead of row-based inserts
+
+Increasing database write throughput
+
+Solution Type 4: Network Improvements
+
+Increase bandwidth
+
+Reduce hops
+
+Use CDN or edge nodes
+
+PART 4️⃣ — Decision Framework (Impact, Cost, Risk)
+
+To choose best solution:
+Rate each solution (1–5) on:
+
+1. Impact
+
+How much it increases ingestion speed
+
+If bottleneck is reduced by >50% = High Impact
+
+2. Cost
+
+Cloud resources
+
+Developer hours
+
+Licensing cost
+
+3. Risk
+
+Migration downtime
+
+Data loss risk
+
+Deployment complexity
+
+Choose the solution with highest impact, lowest cost, lowest risk.
+
+PART 5️⃣ — Exploit & Elevate (Final Stage)
+Exploit (Quick Wins)
+
+Easy fixes
+
+Low cost
+
+Immediate benefit
+Example:
+
+Increase server CPU
+
+Optimize code
+
+Enable batching
+
+Elevate (Long-term Strategic Improvements)
+
+Architectural redesign
+
+Moving from monolithic to distributed ingestion
+
+Adopting Kafka/Flink
+
+Building real-time pipelines
+
+These changes elevate the system to a new performance level.
+
+⭐ FINAL EXAM ANSWER SUMMARY
+
+Your detailed answer should follow this structure:
+
+1️⃣ Identify bottleneck → Use KPIs
+2️⃣ Quantify impact on business
+3️⃣ Use RCA (5 Whys, Ishikawa) to find root cause
+4️⃣ Provide two solutions → Scaling + Optimization
+5️⃣ Use decision framework (Impact, Cost, Risk)
+6️⃣ Explain Exploit (quick wins) and Elevate (long-term upgrades)
+⭐ If you want, I can convert these into:
+
+✔ Handwritten notebook format
+✔ Diagram-based flowcharts
+✔ Bullet points
+✔ One-page summary for revision
+
+Just tell me!

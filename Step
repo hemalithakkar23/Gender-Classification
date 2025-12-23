@@ -1,0 +1,9 @@
+1. pip install -r requirements.txt
+ one time 2. python train_model.py
+
+every time :- best_gender_animal_model.h5
+
+for run :- streamlit run app.py
+
+
+
